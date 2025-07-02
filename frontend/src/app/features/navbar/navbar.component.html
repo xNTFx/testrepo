@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <a routerLink="/">Logo</a>
+
+  @if (user()) {
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <lucide-icon [img]="circleUserRound" size="30"></lucide-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <label mat-menu-label class="username-label">{{ user()?.username }}</label>
+    <button mat-menu-item>test1</button>
+    <button mat-menu-item (click)="logout()">Log out</button>
+  </mat-menu>
+  } @else {
+  <div class="auth-btns">
+    <a routerLink="/register">Register</a>
+    <a routerLink="/login">Login</a>
+  </div>
+  }
+</nav>

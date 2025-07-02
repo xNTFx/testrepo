@@ -1,0 +1,92 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+input {
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+}
+
+.todo-list__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.todo-list__name {
+  overflow-x: auto;
+  padding-bottom: 0.8rem;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.todo-form__btn {
+  cursor: pointer;
+  border: 1px solid green;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: green;
+  color: white;
+}
+
+.todo-form__btn:hover {
+  background-color: greenyellow;
+}
+
+.todo-list {
+  width: 25rem;
+}
+
+.todo-list__remove-btn {
+  cursor: pointer;
+  border: 1px solid red;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: red;
+  color: white;
+}
+
+.todo-list__remove-btn:hover {
+  filter: brightness(90%);
+}
+
+.todo-list__update-btn {
+  cursor: pointer;
+  border: 1px solid orange;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: orange;
+  color: white;
+}
+
+.todo-list__update-btn:hover {
+  filter: brightness(90%);
+}
+
+.todo-list__text-with-check {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}

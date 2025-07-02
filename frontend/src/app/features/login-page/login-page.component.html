@@ -1,0 +1,60 @@
+<div class="login">
+  <h1>Login</h1>
+
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput formControlName="login" />
+    </mat-form-field>
+
+    @if (shouldShowError('login')) {
+    <div class="error">
+      @if (loginForm.get('login')?.errors?.['required']) {
+      <p>Login is required.</p>
+      } @if (loginForm.get('login')?.errors?.['pattern']) {
+      <p>
+        Login must be 3-30 characters long and can only contain letters,
+        numbers, underscores, and hyphens.
+      </p>
+      }
+    </div>
+    }
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    @if (shouldShowError('password')) {
+    <div class="error">
+      @if (loginForm.get('password')?.errors?.['required']) {
+      <p>Password is required.</p>
+      } @if (loginForm.get('password')?.errors?.['pattern']) {
+      <p>
+        Password must be 8-32 characters long and include a lowercase letter,
+        uppercase letter, number, and special character.
+      </p>
+      }
+    </div>
+    }
+
+    @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="loginForm.invalid || isSubmitting"
+    >
+      @if (!isSubmitting) { Login } @else {
+      <mat-progress-spinner
+        diameter="18"
+        mode="indeterminate"
+        class="spinner"
+      />
+      }
+    </button>
+  </form>
+</div>

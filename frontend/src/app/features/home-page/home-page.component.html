@@ -1,0 +1,36 @@
+<div class="home-page">
+  <h1>Todo List</h1>
+  <form class="todo-form" [formGroup]="form" (ngSubmit)="addTodo()">
+    <input type="text" formControlName="todoInput" />
+    <button class="todo-form__btn" type="submit">Add</button>
+  </form>
+
+  <div class="todo-list">
+    @for (todo of todos(); track todo.id) {
+    <div class="todo-list__item">
+      <div class="todo-list__text-with-check">
+        <input
+          type="checkbox"
+          [checked]="todo.completed"
+          (change)="handleCheckBox(todo.id)"
+        />
+        <p
+          class="todo-list__name"
+          [ngStyle]="{
+            textDecoration: todo.completed ? 'line-through' : 'none'
+          }"
+        >
+          {{ todo.name }}
+        </p>
+      </div>
+
+      <button class="todo-list__update-btn" (click)="updateTodo(todo.id)">
+        Update
+      </button>
+      <button class="todo-list__remove-btn" (click)="removeTodo(todo.id)">
+        Remove
+      </button>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="register">
+  <h1>Register</h1>
+
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="handleRegister()">
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput type="text" formControlName="login" />
+    </mat-form-field>
+
+    @if (shouldShowError('login')) {
+    <div class="error">
+      @if (registerForm.get('login')?.errors?.['required']) {
+      <p>Login is required.</p>
+      } @if (registerForm.get('login')?.errors?.['pattern']) {
+      <p>
+        Login must be 3-30 characters long and can only contain letters,
+        numbers, underscores, and hyphens.
+      </p>
+      }
+    </div>
+    }
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    @if (shouldShowError('password')) {
+    <div class="error">
+      @if (registerForm.get('password')?.errors?.['required']) {
+      <p>Password is required.</p>
+      } @if (registerForm.get('password')?.errors?.['pattern']) {
+      <p>
+        Password must be 8-32 characters long and include a lowercase letter,
+        uppercase letter, number, and special character.
+      </p>
+      }
+    </div>
+    }
+
+    <mat-form-field appearance="fill">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" />
+    </mat-form-field>
+
+    @if (shouldShowError('confirmPassword')) {
+    <div class="error">
+      @if (registerForm.get('confirmPassword')?.hasError('required')) {
+      <p>Confirm Password is required.</p>
+      } @if (registerForm.hasError('mismatch') &&
+      !registerForm.get('confirmPassword')?.hasError('required')) {
+      <p>Passwords do not match.</p>
+      }
+    </div>
+    } @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="registerForm.invalid || isSubmitting"
+    >
+      @if (!isSubmitting) { Register } @else {
+      <mat-progress-spinner
+        diameter="18"
+        mode="indeterminate"
+        class="spinner"
+      />
+      }
+    </button>
+  </form>
+</div>
